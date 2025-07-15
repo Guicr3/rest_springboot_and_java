@@ -1,1 +1,17 @@
-spring.application.name=project_java_springboot
+spring:
+  application:
+    name: project_java_springboot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/project_java_springboot?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+    show-sql: false
+
+
+    open-in-view: false
