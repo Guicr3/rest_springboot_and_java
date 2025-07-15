@@ -1,6 +1,6 @@
 package com.guicr3.project_java_springboot.unitTests.mapper.mocks;
 
-import com.guicr3.project_java_springboot.data.dto.PersonDTO;
+import com.guicr3.project_java_springboot.data.dto.v1.PersonDTO;
 import com.guicr3.project_java_springboot.model.Person;
 
 import java.util.ArrayList;
