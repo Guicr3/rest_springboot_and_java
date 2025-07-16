@@ -1,6 +1,6 @@
 package com.guicr3.project_java_springboot.model;
 
-import com.guicr3.project_java_springboot.data.dto.v1.PersonDTO;
+import com.guicr3.project_java_springboot.data.dto.PersonDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;

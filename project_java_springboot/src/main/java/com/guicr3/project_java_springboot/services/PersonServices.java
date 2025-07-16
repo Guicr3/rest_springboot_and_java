@@ -1,12 +1,10 @@
 package com.guicr3.project_java_springboot.services;
 
-import com.guicr3.project_java_springboot.data.dto.v1.PersonDTO;
-import com.guicr3.project_java_springboot.data.dto.v2.PersonDTOV2;
+import com.guicr3.project_java_springboot.data.dto.PersonDTO;
 import com.guicr3.project_java_springboot.exception.ResourceNotFoundException;
 import static com.guicr3.project_java_springboot.mapper.ObjectMapper.parseObject;
 import static com.guicr3.project_java_springboot.mapper.ObjectMapper.parseListObjects;
 
-import com.guicr3.project_java_springboot.mapper.custom.PersonMapper;
 import com.guicr3.project_java_springboot.model.Person;
 import com.guicr3.project_java_springboot.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -21,8 +19,6 @@ public class PersonServices {
 
     @Autowired
     private PersonRepository repository;
-    @Autowired
-    private PersonMapper converter;
 
     private final Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
@@ -33,20 +29,14 @@ public class PersonServices {
 
     public PersonDTO findByID(Long id){
         logger.info("Finding one Person");
-        var person = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records founds for this id"));
+        Person person = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records founds for this id"));
         return parseObject(person, PersonDTO.class);
     }
 
     public PersonDTO create(PersonDTO newPerson){
         logger.info("Creating a person");
-        var person = parseObject(newPerson, Person.class);
+        Person person = parseObject(newPerson, Person.class);
         return parseObject(repository.save(person), PersonDTO.class);
-    }
-
-    public PersonDTOV2 createV2(PersonDTOV2 newPerson){
-        logger.info("Creating a person V2");
-        var person = converter.convertDTOtoEntity(newPerson);
-        return converter.convertEntityToDTO(repository.save(person));
     }
 
     public void update(PersonDTO personDTO){

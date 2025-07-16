@@ -1,7 +1,6 @@
 package com.guicr3.project_java_springboot.controllers;
 
-import com.guicr3.project_java_springboot.data.dto.v1.PersonDTO;
-import com.guicr3.project_java_springboot.data.dto.v2.PersonDTOV2;
+import com.guicr3.project_java_springboot.data.dto.PersonDTO;
 import com.guicr3.project_java_springboot.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/person")
+@RequestMapping(value="/api/person/v1")
 public class PersonController {
 
     @Autowired
@@ -29,11 +28,6 @@ public class PersonController {
         @PostMapping
         private ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
             return ResponseEntity.ok().body(service.create(person));
-        }
-
-        @PostMapping(value="/v2")
-        private ResponseEntity<PersonDTOV2> create(@RequestBody PersonDTOV2 person){
-            return ResponseEntity.ok().body(service.createV2(person));
         }
 
         @PutMapping(value="/{id}")
