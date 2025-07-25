@@ -1,4 +1,4 @@
-package com.guicr3.project_java_springboot.services;
+package com.guicr3.project_java_springboot.unitTests.services;
 
 import com.guicr3.project_java_springboot.controllers.PersonController;
 import com.guicr3.project_java_springboot.data.dto.PersonDTO;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

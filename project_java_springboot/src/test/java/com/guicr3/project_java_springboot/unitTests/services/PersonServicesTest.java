@@ -1,4 +1,4 @@
-package com.guicr3.project_java_springboot.services;
+package com.guicr3.project_java_springboot.unitTests.services;
 
 import com.guicr3.project_java_springboot.data.dto.PersonDTO;
 import com.guicr3.project_java_springboot.exception.RequiredObjectIsNullException;
