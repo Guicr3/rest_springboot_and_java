@@ -1,4 +1,4 @@
-package com.guicr3.project_java_springboot.unitTests.services;
+package com.guicr3.project_java_springboot.services;
 
 import com.guicr3.project_java_springboot.controllers.PersonController;
 import com.guicr3.project_java_springboot.data.dto.PersonDTO;
@@ -43,7 +43,7 @@ public class PersonServices {
     }
 
     public PersonDTO create(PersonDTO personDTO){
-        if (personDTO == null)  throw new RequiredObjectIsNullException();
+        if (personDTO == null) throw new RequiredObjectIsNullException();
 
         logger.info("Creating a person");
         Person person = parseObject(personDTO, Person.class);
@@ -53,11 +53,11 @@ public class PersonServices {
     }
 
     public PersonDTO update(PersonDTO personDTO){
-        if (personDTO == null)  throw new RequiredObjectIsNullException();
+        if (personDTO == null) throw new RequiredObjectIsNullException();
 
         logger.info("Updating a person");
-        Person person = repository.findById(personDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("Person not found"));
-        updateData(person, personDTO);
+        Person person = repository.findById(personDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        updatePerson(person, personDTO);
         PersonDTO dto = parseObject(repository.save(person), PersonDTO.class);
         addHateoasLinks(dto);
         return dto;
@@ -69,7 +69,7 @@ public class PersonServices {
         repository.delete(person);
     }
 
-    public void updateData(Person person, PersonDTO personDTO){
+    public void updatePerson(Person person, PersonDTO personDTO){
         person.setFirstName(personDTO.getFirstName());
         person.setLastName(personDTO.getLastName());
         person.setAddress(personDTO.getAddress());

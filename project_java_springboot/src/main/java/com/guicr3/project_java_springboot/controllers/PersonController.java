@@ -2,7 +2,7 @@ package com.guicr3.project_java_springboot.controllers;
 
 import com.guicr3.project_java_springboot.controllers.docs.PersonControllerDocs;
 import com.guicr3.project_java_springboot.data.dto.PersonDTO;
-import com.guicr3.project_java_springboot.unitTests.services.PersonServices;
+import com.guicr3.project_java_springboot.services.PersonServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,6 +19,7 @@ public class PersonController implements PersonControllerDocs {
     @Autowired
     private PersonServices service;
 
+        @CrossOrigin(origins = "http://localhost:8080")
         @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
         @Override
         public PersonDTO findById(@PathVariable("id") Long id){
@@ -31,12 +32,14 @@ public class PersonController implements PersonControllerDocs {
             return ResponseEntity.ok().body(service.findAll());
         }
 
+        @CrossOrigin(origins = "http://localhost:8080")
         @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
         @Override
         public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
             return ResponseEntity.ok().body(service.create(person));
         }
 
+        @CrossOrigin(origins = "http://localhost:8080")
         @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
         @Override
         public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO updatedPerson, @PathVariable Long id){

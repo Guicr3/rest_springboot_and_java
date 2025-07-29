@@ -23,9 +23,7 @@ public interface PersonControllerDocs {
     PersonDTO findById(@PathVariable("id") Long id);
 
     @Operation(summary = "Find All People", description = "Finds All People", tags = {"People"}, responses = {
-            @ApiResponse(description = "Success", responseCode = "200", content = {
-                    @Content(array = @ArraySchema(schema = @Schema(implementation = PersonDTO.class)))
-            }),
+            @ApiResponse(description = "Success", responseCode = "200", content = {@Content(array = @ArraySchema(schema = @Schema(implementation = PersonDTO.class)))}),
             @ApiResponse(description = "No content", responseCode = "201", content = @Content),
             @ApiResponse(description = "Bad Request", responseCode = "204", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -46,6 +44,7 @@ public interface PersonControllerDocs {
             @ApiResponse(description = "No content", responseCode = "201", content = @Content(schema = @Schema(implementation = PersonDTO.class))),
             @ApiResponse(description = "Bad Request", responseCode = "204", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
     })
     ResponseEntity<PersonDTO> update(@RequestBody PersonDTO updatedPerson, @PathVariable Long id);
@@ -54,6 +53,7 @@ public interface PersonControllerDocs {
             @ApiResponse(description = "No content", responseCode = "201", content = @Content(schema = @Schema(implementation = PersonDTO.class))),
             @ApiResponse(description = "Bad Request", responseCode = "204", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
     })
     ResponseEntity<Void> delete(@PathVariable("id") Long id);
