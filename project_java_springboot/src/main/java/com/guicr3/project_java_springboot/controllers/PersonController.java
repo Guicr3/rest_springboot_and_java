@@ -47,6 +47,12 @@ public class PersonController implements PersonControllerDocs {
             return ResponseEntity.ok().body(service.update(updatedPerson));
         }
 
+        @PatchMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+        @Override
+        public PersonDTO disablePerson(@PathVariable("id") Long id) {
+            return ResponseEntity.ok().body(service.disablePerson(id)).getBody();
+        }
+
         @DeleteMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
         @Override
         public ResponseEntity<Void> delete(@PathVariable("id") Long id){
